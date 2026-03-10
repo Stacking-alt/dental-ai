@@ -4,17 +4,17 @@ from retell import Retell
 
 load_dotenv()
 
-# Initialize the Retell client
+# CORRECT: Use the name from your .env file
 client = Retell(api_key=os.getenv("cal_live_b13d38df3fefbe5f1798604a270895ed"))
 
 def create_call(to_number):
     try:
         call = client.call.create_phone_call(
-            from_number="+1234567890", # Your Retell/Twilio number
+            from_number="+1234567890", 
             to_number=to_number,
             agent_id=os.getenv("4965348")
         )
-        print(f"Call initiated successfully: {call.call_id}")
+        print(f"Call initiated: {call.call_id}")
     except Exception as e:
         print(f"Error: {e}")
 
