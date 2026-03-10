@@ -24,13 +24,19 @@ st.success(" Connected to Smile 4 U AI")
 st.title("🦷 Smile 4 U AI Receptionist")
 
 patient_number = st.text_input("Enter Patient Number (e.g., +91...)")
+# --- Updated Call Logic ---
+# --- Corrected Call Logic ---
 if st.button("Start AI Call"):
-    try:
-        call = client.call.create_phone_call(
-            from_number="+1234567890", # Replace with your Retell number
-            to_number=patient_number,
-            agent_id=agent_id
-        )
-        st.success(f"Call started! ID: {call.call_id}")
-    except Exception as e:
-        st.error(f"Call failed: {e}")
+    if patient_number:
+        try:
+            # We use override_agent_id for the current Retell SDK version
+            call = client.call.create_phone_call(
+                from_number="+1234567890",  # MUST be your actual Retell number
+                to_number=patient_number,
+                override_agent_id=agent_id   # Fix: agent_id -> override_agent_id
+            )
+            st.success(f"Call initiated! Call ID: {call.call_id}")
+        except Exception as e:
+            st.error(f"Failed to start call: {e}")
+    else:
+        st.warning("Please enter a patient phone number first.")
