@@ -1,0 +1,4 @@
+streamlit
+retell-sdk
+python-dotenv
+pandas
