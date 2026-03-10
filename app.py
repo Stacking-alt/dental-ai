@@ -9,8 +9,9 @@ load_dotenv()
 
 # 2. Get keys from Streamlit Secrets (for Cloud) or .env (for Local)
 # NOTE: We use the names of the variables, not the keys themselves here
-api_key = st.secrets.get("cal_live_b13d38df3fefbe5f1798604a270895ed") or os.getenv("cal_live_b13d38df3fefbe5f1798604a270895ed")
-agent_id = st.secrets.get("4965348") or os.getenv("4965348")
+# CORRECT WAY: Use the Variable Names, not the actual long keys
+api_key = st.secrets.get("RETELL_API_KEY") or os.getenv("RETELL_API_KEY")
+agent_id = st.secrets.get("AGENT_ID") or os.getenv("AGENT_ID")
 
 if not api_key:
     st.error("API Key not found! Please check your Streamlit Secrets or .env file.")
